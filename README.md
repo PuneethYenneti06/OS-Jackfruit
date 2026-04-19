@@ -148,56 +148,56 @@ make clean
 > **Note:** Screenshots are taken after running the project on the VM. Replace each placeholder below with your actual annotated screenshot.
 
 ### Screenshot 1 — Multi-Container Supervision
-![Multi-container supervision](screenshots/01_multi_container.png)
+![Multi-container supervision](screenshots/01.jpeg)
 
 *Two containers (alpha, beta) running concurrently under one supervisor process. The supervisor terminal shows both containers registered and alive.*
 
 ---
 
 ### Screenshot 2 — Metadata Tracking (`engine ps`)
-![ps output](screenshots/02_ps_output.png)
+![ps output](screenshots/02.jpeg)
 
 *Output of `engine ps` showing container IDs, host PIDs, states, and configured soft/hard memory limits for all tracked containers.*
 
 ---
 
 ### Screenshot 3 — Bounded-Buffer Logging
-![Logging pipeline](screenshots/03_logging.png)
+![Logging pipeline](screenshots/03.jpeg)
 
 *Contents of a container log file captured through the producer/consumer pipeline. Log output from inside the container is persisted to `logs/alpha.log` via the bounded buffer.*
 
 ---
 
 ### Screenshot 4 — CLI and IPC
-![CLI and IPC](screenshots/04_cli_ipc.png)
+![CLI and IPC](screenshots/04.jpeg)
 
 *A `start` command issued from the CLI client and the supervisor responding over the UNIX domain socket. The supervisor prints confirmation with the container PID.*
 
 ---
 
 ### Screenshot 5 — Soft-Limit Warning
-![Soft limit warning](screenshots/05_soft_limit.png)
+![Soft limit warning](screenshots/05.jpeg)
 
 *`dmesg` output showing the kernel module emitting a `SOFT LIMIT` warning for a container whose RSS exceeded the configured soft threshold.*
 
 ---
 
 ### Screenshot 6 — Hard-Limit Enforcement
-![Hard limit kill](screenshots/06_hard_limit.png)
+![Hard limit kill](screenshots/06.jpeg)
 
 *`dmesg` showing a container killed after exceeding its hard limit. `engine ps` reflects the container state as `killed`, distinguishing it from a manual stop.*
 
 ---
 
 ### Screenshot 7 — Scheduling Experiment
-![Scheduling experiment](screenshots/07_scheduling.png)
+![Scheduling experiment](screenshots/07.jpeg)
 
 *Two CPU-bound containers running at different nice values. Observable difference in completion time demonstrates CFS priority weighting.*
 
 ---
 
 ### Screenshot 8 — Clean Teardown
-![Clean teardown](screenshots/08_teardown.png)
+![Clean teardown](screenshots/08.jpeg)
 
 *`ps aux` output after supervisor shutdown showing no zombie processes. Supervisor exit messages confirm logging threads joined and all file descriptors were closed.*
 
