@@ -145,7 +145,7 @@ make clean
 
 ## 3. Demo Screenshots
 
-> **Note:** Screenshots are taken after running the project on the VM. Replace each placeholder below with your actual annotated screenshot.
+> **Note:** Screenshots are taken after running the project on the VM.
 
 ### Screenshot 1 — Multi-Container Supervision
 ![Multi-container supervision](screenshots/01.jpeg)
@@ -169,7 +169,7 @@ make clean
 ---
 
 ### Screenshot 4 — CLI and IPC
-![CLI and IPC](screenshots/04.jpeg)
+![CLI and IPC](screenshots/04.png)
 
 *A `start` command issued from the CLI client and the supervisor responding over the UNIX domain socket. The supervisor prints confirmation with the container PID.*
 
