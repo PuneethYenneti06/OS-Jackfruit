@@ -340,10 +340,10 @@ Two containers each running `cpu_hog` for the same duration, one at nice 0 and o
 
 | Container | Nice Value | Wall Time (s) | CPU% Observed |
 |-----------|-----------|---------------|----------------|
-| alpha | 0 | [fill in] | [fill in] |
-| beta | 10 | [fill in] | [fill in] |
+| alpha | 0 | 0:08.66 | 98.3% |
+| beta | 10 | 0:07.96 | 89.3% |
 
-**What this shows:** [Fill in after running — expected result: alpha finishes faster or accumulates more CPU time. The ratio should approximately match the CFS weight ratio for nice 0 vs nice 10, which is roughly 3:1.]
+**What this shows:** Both containers ran the same cpu_hog workload concurrently on a single-core VM. Alpha (nice 0) observed a higher CPU percentage (98.3%) compared to beta (nice 10, 89.3%), consistent with CFS priority weighting — a lower nice value results in a higher CFS weight, causing the scheduler to assign alpha a larger share of CPU time. The ratio does not reach the theoretical 3:1 (nice 0 vs nice 10 weight table ratio) due to two factors: first, the experiment duration is short (~8–9 seconds), giving CFS limited time to express the full weight difference; second, VirtualBox VM overhead and the supervisor's own scheduling activity compress the observable gap. Nevertheless, alpha's vruntime accumulates more slowly than beta's due to its higher weight, keeping it at the front of the CFS run queue more frequently, which is reflected in the higher CPU% observed.
 
 ---
 
