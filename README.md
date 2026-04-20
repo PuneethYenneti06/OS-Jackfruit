@@ -190,7 +190,7 @@ make clean
 ---
 
 ### Screenshot 7 — Scheduling Experiment
-![Scheduling experiment](screenshots/07.jpeg)
+![Scheduling experiment](screenshots/07.webp)
 
 *Two CPU-bound containers running at different nice values. Observable difference in completion time demonstrates CFS priority weighting.*
 
