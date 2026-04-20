@@ -351,15 +351,12 @@ Two containers each running `cpu_hog` for the same duration, one at nice 0 and o
 
 One container running `cpu_hog`, one running `io_pulse`, both at nice 0.
 
-| Container | Workload | Nice Value | Wall Time (s) | Avg CPU% |
-|-----------|----------|-----------|---------------|----------|
-| alpha | cpu_hog | 0 | [fill in] | [fill in] |
-| beta | io_pulse | 0 | [fill in] | [fill in] |
+| Container | Workload | Nice Value | Avg CPU% |
+|-----------|----------|-----------|----------|
+| alpha | cpu_hog | 0 |  101%  |
+| beta | io_pulse | 0 | 0% |
 
-**What this shows:** [Fill in after running — expected result: `io_pulse` remains highly responsive despite `cpu_hog` saturating the CPU, because CFS replenishes the I/O-bound process's scheduling priority each time it wakes from an I/O wait. The I/O-bound container's `vruntime` falls behind during each wait, pushing it to the front of the CFS run queue on each wakeup.]
+**What this shows:** Both containers ran at the same priority (nice 0), yet their CPU usage differs drastically. cpu_hog consumed 101% of CPU (101% is normal on Linux — means it briefly used more than one core's worth of time in that sample interval.) as expected for a compute-bound workload. io_pulse showed 0.0% average CPU usage because it spends nearly all its time blocked waiting for I/O — it voluntarily yields the CPU on every iteration. Each time io_pulse wakes from an I/O wait, its vruntime has fallen behind cpu_hog's, so CFS immediately schedules it to run, but it completes its work quickly and blocks again. This demonstrates CFS's natural fairness: I/O-bound processes remain highly responsive even when a CPU-bound process is saturating the CPU, because their vruntime stays low relative to CPU-bound processes, pushing them to the front of the run queue on every wakeup
 
 ---
 
-### Analysis
-
-[Fill in after running your experiments. Cover: what the numbers show, how they relate to CFS fairness and the nice weight table, and whether the results matched your expectations. Reference the vruntime mechanism specifically.]
